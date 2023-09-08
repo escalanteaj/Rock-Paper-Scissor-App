@@ -1,5 +1,6 @@
 
 from tkinter import *
+import tkinter as tk
 import random
 
 # Game Reset
@@ -7,9 +8,8 @@ def reset():
     button1["state"] = "active"
     button2["state"] = "active"
     button3["state"] = "active"
-    label1.config(text = "Player")
-    label2.config(text = "Computer")
-    label3.config(text = "")
+    label1.config(text = "Player VS Computer")
+    label2.config(text = "Match Result")
     
 # Disable Buttons
 def disableButton():
@@ -26,9 +26,8 @@ def isRock():
         matchResult = "Player Wins"
     else:
         matchResult = "Computer Wins"
-    label4.config(text = matchResult)
-    label1.config(text = "Rock     ")
-    label3.config(text = computerValue)
+    label2.config(text = matchResult)
+    label1.config(text = "Rock VS " + computerValue)
     disableButton()
     
 def isPaper():
@@ -39,9 +38,8 @@ def isPaper():
         matchResult = "Computer Wins"
     else:
         matchResult = "Player Wins"
-    label4.config(text = matchResult)
-    label1.config(text = "Paper     ")
-    label3.config(text = computerValue)
+    label2.config(text = matchResult)
+    label1.config(text = "Paper VS " + computerValue)
     disableButton()
     
 def isScissor():
@@ -52,9 +50,8 @@ def isScissor():
         matchResult = "Computer Wins"
     else:
         matchResult = "Player Wins"
-    label4.config(text = matchResult)
-    label1.config(text = "Rock     ")
-    label3.config(text = computerValue)
+    label2.config(text = matchResult)
+    label1.config(text = "Scissor VS " + computerValue)
     disableButton()
 
 # Create Tk Object and Set Window
@@ -63,40 +60,65 @@ root.geometry("500x500")
 root.title("Rock, Paper, Scissor Game")
 
 # Set GUI
-Label(root, text = "Rock, Paper, Scissor", 
-      font = "normal 24", fg = "Gray").pack(pady = 25)
+label0 = tk.Label(root)
+label0["text"] = "Rock, Paper, Scissor"
+label0["font"] = "normal 28"
+label0["fg"] = "#EEEEEE"
+label0["bg"] = "#3066A3"
+label0["justify"] = "center"
+label0.place(x=0,y=0,width=500,height=50)
 
-frame = Frame(root)
-frame.pack()
+label1 = tk.Label(root)
+label1["text"] = "Player VS Computer"
+label1["font"] = "normal 22"
+label1["fg"] = "#EEEEEE"
+label1["bg"] = "#5EA9EA"
+label1["justify"] = "center"
+label1.place(x=0,y=50,width=500,height=100)
 
-label1 = Label(frame, text = "Player        ", font = 12)
-label2 = Label(frame, text = "VS        ", font = 14)
-label3 = Label(frame, text = "Computer", font = 12)
+label2 = tk.Label(root)
+label2["text"] = "Match Result"
+label2["font"] = "normal 34"
+label2["fg"] = "#333333"
+label2["bg"] = "#D0D0D0"
+label2["justify"] = "center"
+label2.place(x=0,y=150,width=500,height=75)
 
-label1.pack(side = LEFT)
-label2.pack(side = LEFT)
-label3.pack()
+button1 = tk.Button(root)
+button1["text"] = "Rock"
+button1["font"] = "normal 12"
+button1["fg"] = "#EEEEEE"
+button1["bg"] = "#3066A3"
+button1["justify"] = "center"
+button1["command"] = isRock
+button1.place(x=66,y=270,width=100,height=40)
 
-label4 = Label(root, text = "", font = "normal 24", bg = "white",
-               width = 15, borderwidth = 2, relief = "solid")
-label4.pack(pady = 20)
+button2 = tk.Button(root)
+button2["text"] = "Paper"
+button2["font"] = "normal 12"
+button2["fg"] = "#EEEEEE"
+button2["bg"] = "#3066A3"
+button2["justify"] = "center"
+button2["command"] = isPaper
+button2.place(x=200,y=270,width=100,height=40)
 
-frame1 = Frame(root)
-frame1.pack()
+button3 = tk.Button(root)
+button3["text"] = "Scissor"
+button3["font"] = "normal 12"
+button3["fg"] = "#EEEEEE"
+button3["bg"] = "#3066A3"
+button3["justify"] = "center"
+button3["command"] = isScissor
+button3.place(x=333,y=270,width=100,height=40)
 
-button1 = Button(frame1, text = "Rock", font = 12, width = 7,
-                 command = isRock)
-button2 = Button(frame1, text = "Paper", font = 12, width = 7,
-                 command = isPaper)
-button3 = Button(frame1, text = "Scissor", font = 12, width = 7,
-                 command = isScissor)
-
-button1.pack(side = LEFT, padx = 10)
-button2.pack(side = LEFT, padx = 10)
-button3.pack(padx = 10)
-
-Button(root, text = "Reset", font = 12, fg = "red", bg = "black",
-       command = reset).pack(pady = 25)
+resetButton = tk.Button(root)
+resetButton["text"] = "Reset"
+resetButton["font"] = "normal 12"
+resetButton["fg"] = "#EEEEEE"
+resetButton["bg"] = "#5EA9EA"
+resetButton["justify"] = "center"
+resetButton["command"] = reset
+resetButton.place(x=200,y=350,width=100,height=40)
 
 # Set Opponent Values
 opponentValue = {
